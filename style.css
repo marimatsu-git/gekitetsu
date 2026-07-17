@@ -108,7 +108,7 @@ body.opening-done .hero-overlay {
 
 .impact-static1 {
   width: min(520px, 38vw);
-  left: 22%;
+  left: 24%;
   top: 25%;
   transform: translate(-50%, -50%) rotate(-12deg);
   opacity: 0.9;
@@ -1724,7 +1724,7 @@ body.opening-active {
 .impact1 {
   --impact-rotate: -12deg;
   width: min(520px, 38vw);
-  left: 22%;
+  left: 24%;
   top: 25%;
   transform: translate(-50%, -50%) scale(0.2) rotate(-12deg);
   filter: brightness(2.3) contrast(1.8)
