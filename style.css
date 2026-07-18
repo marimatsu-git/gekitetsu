@@ -667,6 +667,12 @@ nav a:hover {
   display: none;
 }
 
+.topic-item-contain::after {
+  aspect-ratio: 2 / 3;
+  background-size: contain;
+  background-color: rgba(0, 0, 0, 0.82);
+}
+
 /* ===== STAGE FEATURE CAROUSEL ===== */
 .stage-carousel {
   position: relative;
@@ -2118,6 +2124,12 @@ body.opening-active {
     width: min(100%, 330px);
     max-height: 210px;
     object-fit: cover;
+  }
+
+  .topic-item-contain .topic-mobile-image {
+    max-height: none;
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.82);
     object-position: center;
     border: 1px solid rgba(255, 255, 255, 0.24);
     filter: saturate(0.88) contrast(1.08);
