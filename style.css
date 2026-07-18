@@ -2,6 +2,16 @@
   box-sizing: border-box;
 }
 
+:root {
+  --metal-slide-top: #202326;
+  --metal-slide-bottom: #171a1c;
+  --metal-frame-top: #1c1a18;
+  --metal-frame-bottom: #151515;
+  --metal-hairline: rgba(255, 255, 255, 0.035);
+  --metal-frame-hairline: rgba(255, 255, 255, 0.025);
+  --metal-separator: rgba(255, 255, 255, 0.42);
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -792,6 +802,11 @@ nav a:hover {
   min-height: 40px;
   margin: -6px 0 0;
   padding: 10px 0 8px;
+  background:
+    linear-gradient(90deg, var(--metal-hairline) 0 1px, transparent 1px 8px),
+    linear-gradient(180deg, var(--metal-slide-top) 0%, var(--metal-slide-bottom) 100%);
+  background-size: 8px 100%, auto;
+  box-shadow: -28px 0 0 var(--metal-slide-bottom), 28px 0 0 var(--metal-slide-bottom);
   font-size: 0.84rem;
   letter-spacing: 0.22em;
 }
@@ -813,6 +828,11 @@ nav a:hover {
   min-height: 34px;
   margin: 0 0 24px auto;
   padding: 7px 14px 8px 0;
+  background:
+    linear-gradient(90deg, var(--metal-frame-hairline) 0 1px, transparent 1px 8px),
+    linear-gradient(180deg, var(--metal-frame-top) 0%, var(--metal-frame-bottom) 100%);
+  background-size: 8px 100%, auto;
+  box-shadow: 28px 0 0 var(--metal-frame-bottom);
   color: rgba(255, 255, 255, 0.82);
   font-size: 0.8rem;
   text-align: right;
@@ -1158,15 +1178,15 @@ nav a:hover {
 .profile-body > .section-label::after {
   content: "";
   position: absolute;
-  left: -30px;
-  right: -30px;
+  left: calc(-360px - 32px - 30px);
+  right: 28px;
   bottom: 0;
   height: 1px;
   background: rgba(255, 255, 255, 0.42);
 }
 
 .profile-body > h3 {
-  width: auto;
+  width: 100%;
   min-height: 0;
   padding: 0;
   text-align: left;
@@ -1189,7 +1209,38 @@ nav a:hover {
   align-items: stretch;
   padding: 30px;
   border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+
+.profile-card,
+.sns-panel {
+  --metal-slide-offset: 30px;
+  --metal-slide-height: 40px;
+}
+
+.profile-card {
   background: rgba(0, 0, 0, 0.44);
+}
+
+.sns-panel {
+  --metal-slide-offset: 24px;
+}
+
+.profile-card::after,
+.sns-panel::after {
+  z-index: 5;
+}
+
+.profile-body,
+.sns-body {
+  position: relative;
+  z-index: 2;
+}
+
+.profile-image,
+.sns-preview {
+  position: relative;
+  z-index: 4;
 }
 
 .profile-image {
@@ -1356,17 +1407,18 @@ nav a:hover {
 }
 
 .sns-body h3 {
-  margin: 0 0 8px;
+  margin: 0 0 0;
   font-size: 1.4rem;
   letter-spacing: 0.08em;
 }
 
 .sns-body > .section-label {
   position: relative;
-  display: inline-block;
+  display: block;
+  width: 100%;
   min-width: min(320px, 100%);
-  margin: 0 0 14px;
-  padding: 0 0 10px;
+  margin: 0;
+  padding: 10px 0 10px;
   color: rgba(255, 255, 255, 0.68);
   font-size: 0.84rem;
   letter-spacing: 0.22em;
@@ -1375,8 +1427,8 @@ nav a:hover {
 .sns-body > .section-label::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
+  left: calc(-190px - 24px);
+  right: -28px;
   bottom: 0;
   height: 1px;
   background: rgba(255, 255, 255, 0.42);
@@ -1489,16 +1541,7 @@ nav a:hover {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.055), transparent 42%),
     rgba(0, 0, 0, 0.54);
-  border-top: 0;
-  border-left: 1px solid rgba(255, 255, 255, 0.24);
-  border-right: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
-  background-image:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.055), transparent 42%),
-    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18));
-  background-position: 0 0, right 42px;
-  background-size: auto, 1px calc(100% - 42px);
-  background-repeat: no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.24);
 }
 
 .contact-form label {
@@ -1571,6 +1614,57 @@ nav a:hover {
   border-color: rgba(255, 255, 255, 0.62);
   transform: translateY(-1px);
 }
+
+/* ===== METAL PART EXTENSIONS ===== */
+.sns-body > .section-label {
+  width: calc(100% - 28px);
+  background:
+    linear-gradient(90deg, var(--metal-hairline) 0 1px, transparent 1px 8px),
+    linear-gradient(180deg, var(--metal-slide-top) 0%, var(--metal-slide-bottom) 100%);
+  background-size: 8px 100%, auto;
+}
+
+.sns-body > .section-label {
+  box-shadow: calc(-190px - 24px) 0 0 var(--metal-slide-bottom), 28px 0 0 var(--metal-slide-bottom);
+}
+
+.sns-body h3 {
+  position: relative;
+  box-sizing: border-box;
+  width: calc(100% - 28px);
+  padding: 8px 0 8px 26px;
+  background:
+    linear-gradient(90deg, var(--metal-frame-hairline) 0 1px, transparent 1px 8px),
+    linear-gradient(180deg, var(--metal-frame-top) 0%, var(--metal-frame-bottom) 100%);
+  background-size: 8px 100%, auto;
+}
+
+.sns-body h3 {
+  box-shadow: 28px 0 0 var(--metal-frame-bottom);
+}
+
+.sns-body h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--metal-separator);
+  pointer-events: none;
+}
+
+.sns-body h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: -28px;
+  bottom: 0;
+  height: 1px;
+  background: var(--metal-separator);
+  pointer-events: none;
+}
+
 
 /* ===== SECRET ===== */
 #secret input {
@@ -2088,6 +2182,20 @@ body.opening-active {
     right: 0;
   }
 
+  .profile-body > .section-label,
+  .sns-body > .section-label,
+  .profile-body > h3,
+  .sns-body h3 {
+    width: 100%;
+    box-shadow: 0 0 0 transparent;
+  }
+
+  .profile-body > h3::after,
+  .sns-body h3::after {
+    left: 0;
+    right: 0;
+  }
+
   .profile-list {
     grid-template-columns: 1fr;
   }
@@ -2245,6 +2353,11 @@ body.opening-active {
     width: 100%;
     min-width: 0;
     margin-top: 4px;
+  }
+
+  .sns-body > .section-label::after {
+    left: 0;
+    right: 0;
   }
 
   .sns-body h3 {
