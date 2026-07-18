@@ -2267,9 +2267,17 @@ body.opening-active {
     white-space: nowrap;
   }
 
+  .stage-card .section-label {
+    box-shadow: -16px 0 0 var(--metal-slide-bottom), 16px 0 0 var(--metal-slide-bottom);
+  }
+
   .stage-card .section-label::after {
     left: -16px;
     right: -16px;
+  }
+
+  .stage-card .entry-date {
+    box-shadow: 16px 0 0 var(--metal-frame-bottom);
   }
 
   .stage-card .entry-date::after {
